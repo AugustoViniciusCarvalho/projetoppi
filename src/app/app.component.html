@@ -1,0 +1,4 @@
+<app-index *ngIf="this.indexService.getAtivado() == true"></app-index>
+<app-carrinho *ngIf="this.carrinhoService.getAtivado() == true"></app-carrinho>
+<app-compra *ngIf="this.compraService.getAtivado() == true"></app-compra>
+<app-checkout *ngIf="this.checkoutService.getAtivado() == true"></app-checkout>

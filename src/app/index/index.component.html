@@ -1,0 +1,12 @@
+<div class="navbar navbar-expand-lg navbar-light bg-light">
+    <a href="#">Página Principal</a>
+    <a href="#" (click)="carrinho()">Carrinho</a>
+    <a href="#">Montar Computador</a>
+</div>
+
+<div class="produto">
+    <div *ngFor="let produto of produtos" class="produtoInterno">
+        <img class="produtoImg grow" src="{{produto.img}}" alt="" (click)="compra(produto)">
+        <button class="botao" (click)="this.indexService.adicionarCarrinho(produto)">Adicionar ao Carrinho</button>
+    </div>
+</div>

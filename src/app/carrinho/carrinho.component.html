@@ -1,0 +1,16 @@
+<div class="navbar navbar-expand-lg navbar-light bg-light">
+    <a href="#" (click)="index()">Página Principal</a>
+    <a href="#">Carrinho</a>
+    <a href="#">Montar Computador</a>
+</div>
+
+<div *ngFor="let produto of carrinho">
+    <div class="produto">
+        <p>{{produto.nome}} <button (click)="diminuir(produto)">-</button> {{produto.quantidade}} <button (click)="aumentar(produto)">+</button></p>
+        <img id="botaoExcluir" (click)="excluirItem(produto)" src="https://imagensemoldes.com.br/wp-content/uploads/2020/08/Bot%C3%A3o-X-Vermelho-PNG.png" alt="">
+    </div>
+</div>
+
+<p *ngIf="precoTotal > 0">Preço total: R$ {{precoTotal}}</p>
+
+<input type="button" value="Finalizar Compra" class="botao" (click)="checkout()">
