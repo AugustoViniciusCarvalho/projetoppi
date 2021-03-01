@@ -3,3 +3,44 @@
     justify-content: space-between;
     width:45%;
 }
+
+.nav-link{
+    color: red;
+}
+
+.produto{
+}
+
+.produtoImg{
+    height: 20%;
+    width: 20%;
+}
+
+.produtoInterno{
+    display: flex;
+    flex-wrap: nowrap;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 50%;
+    margin-bottom: 3%;
+    align-items: center;
+    align-content: center;
+}
+
+.preco{
+    color: forestgreen;
+    font-weight: bold;
+}
+
+.campo:invalid{
+    background-color: #969696;
+}
+
+.campo{
+    width: 25%;
+}
+
+.botao:disabled{
+    background-color: brown;
+    border-color: brown;
+}

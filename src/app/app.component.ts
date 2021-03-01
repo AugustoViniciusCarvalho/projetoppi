@@ -5,6 +5,7 @@ import { CarrinhoService } from './model/carrinho.service';
 import { CheckoutService } from './model/checkout.service';
 import { CompraService } from './model/compra.service';
 import { IndexService } from './model/index.service';
+import { MontarComputadorService } from './model/montar-computador.service';
 
 @Component({
   selector: 'my-app',
@@ -16,7 +17,7 @@ export class AppComponent  {
 
   currentItem = "television";
 
-  constructor(private indexService: IndexService, private carrinhoService: CarrinhoService, private compraService: CompraService, private checkoutService: CheckoutService){
+  constructor(private indexService: IndexService, private carrinhoService: CarrinhoService, private compraService: CompraService, private checkoutService: CheckoutService, private montarComputadorService: MontarComputadorService){
   }
 
   ngOnInit(){
@@ -32,32 +33,34 @@ export class AppComponent  {
     
     if(JSON.parse(sessionStorage.getItem("carrinho")) == true){
       this.carrinhoService.ativar();
-      this.carrinhoService.getAtivado();
     } else if(JSON.parse(sessionStorage.getItem("carrinho")) == false){
       this.carrinhoService.desativar();
-      this.carrinhoService.getAtivado();
     } else if(JSON.parse(sessionStorage.getItem("carrinho")) == undefined){
       this.carrinhoService.desativar();
     }
 
     if(JSON.parse(sessionStorage.getItem("compra")) == true){
       this.compraService.ativar();
-      this.compraService.getAtivado();
     } else if(JSON.parse(sessionStorage.getItem("compra")) == false){
       this.compraService.desativar();
-      this.compraService.getAtivado();
     } else if(JSON.parse(sessionStorage.getItem("compra")) == undefined){
       this.compraService.desativar();
     }
 
     if(JSON.parse(sessionStorage.getItem("checkout")) == true){
       this.checkoutService.ativar();
-      this.checkoutService.getAtivado();
     } else if(JSON.parse(sessionStorage.getItem("checkout")) == false){
       this.checkoutService.desativar();
-      this.checkoutService.getAtivado();
     } else if(JSON.parse(sessionStorage.getItem("checkout")) == undefined){
       this.checkoutService.desativar();
+    }
+
+    if(JSON.parse(sessionStorage.getItem("montarComputador")) == true){
+      this.montarComputadorService.ativar();
+    } else if (JSON.parse(sessionStorage.getItem("montarComputador")) == false){
+      this.montarComputadorService.desativar();
+    } else if (JSON.parse(sessionStorage.getItem("montarComputador")) == undefined){
+      this.montarComputadorService.desativar();
     }
   }
 }

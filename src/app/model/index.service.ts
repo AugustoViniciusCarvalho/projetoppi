@@ -18,12 +18,20 @@ export class IndexService {
 
   url = "http://localhost:3000";
 
-  getProdutos(): Observable<any> {
+  getProdutos(): Observable<any>{
     return this.http.get(`${this.url}/produtos`)
   }
 
-  getProdutoID(id: number): Observable<any>{
-    return this.http.get(`${this.url}/produtos/${id}`);
+  getProdutoTipo(tipo: number): Observable<any>{
+    return this.http.get(`${this.url}/produtos/${tipo}`);
+  }
+
+  getProdutoQuantidade(produto: number){
+    return this.http.get(`${this.url}/estoque/${produto}`);
+  }
+
+  patchProduto(quantidade: number, id: number){
+    return this.http.patch(`${this.url}/estoque/`,{quantidade: quantidade, id: id});
   }
 
   ativar() {
@@ -49,9 +57,13 @@ export class IndexService {
     if (existe.length > 0) {
       for (let i = 0; i < this.carrinho.length; i++) {
         if (this.carrinho[i].nome == produto.nome) {
-          this.carrinho[i].quantidade = this.carrinho[i].quantidade + 1;
-          sessionStorage.setItem("lista", JSON.stringify(this.carrinho));
-          alert("Unidade extra adicionada ao carrinho");
+          if (this.carrinho[i].quantidade < this.carrinho[i].estoque){
+            this.carrinho[i].quantidade = this.carrinho[i].quantidade + 1;
+            sessionStorage.setItem("lista", JSON.stringify(this.carrinho));
+            alert("Unidade extra adicionada ao carrinho");
+          } else {
+            alert("Não existem mais unidades desse produto no estoque");
+          }
         }
       }
     } else {
@@ -61,7 +73,12 @@ export class IndexService {
     }
   }
 
-  setCarrinho(carrinho: Array<Produto>) {
+  setCarrinho(carrinho: Array<Produto>){
     this.carrinho = carrinho;
   }
+
+  getCarrinho(): Array<Produto>{
+    return this.carrinho;
+  }
+  
 }

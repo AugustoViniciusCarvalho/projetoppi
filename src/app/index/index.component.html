@@ -1,12 +1,26 @@
-<div class="navbar navbar-expand-lg navbar-light bg-light">
-    <a href="#">Página Principal</a>
-    <a href="#" (click)="carrinho()">Carrinho</a>
-    <a href="#">Montar Computador</a>
-</div>
+<div class="corpo">
 
-<div class="produto">
-    <div *ngFor="let produto of produtos" class="produtoInterno">
-        <img class="produtoImg grow" src="{{produto.img}}" alt="" (click)="compra(produto)">
-        <button class="botao" (click)="this.indexService.adicionarCarrinho(produto)">Adicionar ao Carrinho</button>
+    <div class="navbar navbar-expand-lg navbar-light bg-dark">
+        <a class="nav-link" href="#">Página Principal</a>
+        <a class="nav-link" href="#" (click)="carrinho()">Carrinho</a>
+        <a class="nav-link" href="#" (click)="montarComputador()">Montar Computador</a>
     </div>
+
+    <div class="produto">
+        <div *ngFor="let produto of produtos" class="produtoInterno">
+            <img class="produtoImg" src="{{produto.img}}" alt="">
+            <p class="titulo">{{produto.nome}}</p>
+            <p class="preco"> R$ {{produto.valor}}</p>
+            <button class="btn btn-primary botao" [disabled]="produto.disponivel == false" (click)="this.indexService.adicionarCarrinho(produto)">Adicionar ao
+                Carrinho</button>
+            <button class="btn btn-secondary botao" [disabled]="produto.disponivel == false" (click)="checkout(produto, produto.valor)">Comprar</button>
+            <div *ngIf="produto.disponivel == true" class="disponivel">
+                <p>Produto Disponível</p>
+            </div>
+            <div *ngIf="produto.disponivel == false" class="indisponivel">
+                <p>Produto Indisponível</p>
+            </div>
+        </div>
+    </div>
+
 </div>

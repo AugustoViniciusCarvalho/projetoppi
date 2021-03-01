@@ -14,7 +14,16 @@
     margin-top: 0.25%;
 }
 
-.botao{
-    color: black;
-    background-color:  greenyellow;
+.btn-success:disabled{
+    background-color: brown;
+    border-color: brown;
+}
+
+.nav-link{
+    color: red;
+}
+
+.alert{
+    width: 20%;
+    height: 10%;
 }

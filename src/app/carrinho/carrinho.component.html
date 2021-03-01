@@ -1,16 +1,23 @@
-<div class="navbar navbar-expand-lg navbar-light bg-light">
-    <a href="#" (click)="index()">Página Principal</a>
-    <a href="#">Carrinho</a>
-    <a href="#">Montar Computador</a>
+<div class="navbar navbar-expand-lg navbar-light bg-dark">
+    <a class="nav-link" href="#" (click)="index()">Página Principal</a>
+    <a class="nav-link" href="#">Carrinho</a>
+    <a class="nav-link" href="#" (click)="montarComputador()">Montar Computador</a>
 </div>
 
 <div *ngFor="let produto of carrinho">
     <div class="produto">
-        <p>{{produto.nome}} <button (click)="diminuir(produto)">-</button> {{produto.quantidade}} <button (click)="aumentar(produto)">+</button></p>
-        <img id="botaoExcluir" (click)="excluirItem(produto)" src="https://imagensemoldes.com.br/wp-content/uploads/2020/08/Bot%C3%A3o-X-Vermelho-PNG.png" alt="">
+        <p>{{produto.nome}} <button class="btn-secondary" (click)="diminuir(produto)">-</button>
+            {{produto.quantidade}} <button class="btn-secondary" (click)="aumentar(produto)">+</button></p>
+        <img id="botaoExcluir" (click)="excluirItem(produto)"
+            src="https://imagensemoldes.com.br/wp-content/uploads/2020/08/Bot%C3%A3o-X-Vermelho-PNG.png" alt="">
     </div>
 </div>
 
 <p *ngIf="precoTotal > 0">Preço total: R$ {{precoTotal}}</p>
 
-<input type="button" value="Finalizar Compra" class="botao" (click)="checkout()">
+<div *ngIf="botao.disabled" class="alert alert-danger">
+    <p>O carrinho está vazio.</p>
+</div><br>
+
+<button ngModel #botao="ngModel" ngDefaultControl name="botao" class="btn btn-success" (click)="checkout()"
+    [disabled]="this.carrinho.length == 0">Finalizar compra</button>

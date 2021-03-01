@@ -1,0 +1,59 @@
+<div class="navbar navbar-expand-lg navbar-light bg-dark">
+    <a class="nav-link" href="#" (click)="index()">Página Principal</a>
+    <a class="nav-link" href="#" (click)="carrinho()">Carrinho</a>
+    <a class="nav-link" href="#">Montar Computador</a>
+</div>
+
+<h1>Processadores</h1>
+<div class="produto">
+    <div *ngFor="let processador of processadores" class="produtoInterno">
+        <img class="produtoImg grow" src="{{processador.img}}" alt="" (click)="escolherProduto(processador, 1)">
+        <p class="nomeProduto">{{processador.nome}}</p>
+        <p class="preco">R$ {{processador.valor}}</p>
+    </div>
+</div>
+<h1>Placas de Vídeo</h1>
+<div class="produto">
+    <div *ngFor="let placaDeVideo of placasDeVideo" class="produtoInterno">
+        <img class="produtoImg grow" src="{{placaDeVideo.img}}" alt="" (click)="escolherProduto(placaDeVideo, 2)">
+        <p class="nomeProduto">{{placaDeVideo.nome}}</p>
+        <p class="preco">R$ {{placaDeVideo.valor}}</p>
+    </div>
+</div>
+<h1>Placas-mãe</h1>
+<div class="produto">
+    <div *ngFor="let placaMae of placasMae" class="produtoInterno">
+        <img class="produtoImg grow" src="{{placaMae.img}}" alt="" (click)="escolherProduto(placaMae, 3)">
+        <p class="nomeProduto">{{placaMae.nome}}</p>
+        <p class="preco">R$ {{placaMae.valor}}</p>
+    </div>
+</div>
+<h1>Memórias</h1>
+<div class="produto">
+    <div *ngFor="let memoria of memorias" class="produtoInterno">
+        <img class="produtoImg grow" src="{{memoria.img}}" alt="" (click)="escolherProduto(memoria, 4)">
+        <p class="nomeProduto">{{memoria.nome}}</p>
+        <p class="preco">R$ {{memoria.valor}}</p>
+    </div>
+</div>
+<h1>Fontes</h1>
+<div class="produto">
+    <div *ngFor="let fonte of fontes" class="produtoInterno">
+        <img class="produtoImg grow" src="{{fonte.img}}" alt="" (click)="escolherProduto(fonte, 5)">
+        <p class="nomeProduto">{{fonte.nome}}</p>
+        <p class="preco">R$ {{fonte.valor}}</p>
+    </div>
+</div>
+<h1>Gabinetes</h1>
+<div class="produto">
+    <div *ngFor="let gabinete of gabinetes" class="produtoInterno">
+        <img class="produtoImg grow" src="{{gabinete.img}}" alt="" (click)="escolherProduto(gabinete, 6)">
+        <p class="nomeProduto">{{gabinete.nome}}</p>
+        <p class="preco">R$ {{gabinete.valor}}</p>
+    </div>
+</div><br>
+<div class="alert alert-danger" *ngIf="botao.disabled">
+    Escolha todas as peças necessárias antes de confirmar a compra.
+</div><br>
+<button class="btn btn-success botao" name="botao" ngModel #botao="ngModel" ngDefaultControl
+    (click)="checkout(this.precoTotal)" [disabled]="this.produtosEscolhidos.length < 6">Finalizar compra</button>

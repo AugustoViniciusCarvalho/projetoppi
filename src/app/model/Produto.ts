@@ -5,4 +5,6 @@ export class Produto{
     valor: number;
     img: string;
     quantidade: number;
+    estoque: number;
+    disponivel: boolean;
 }

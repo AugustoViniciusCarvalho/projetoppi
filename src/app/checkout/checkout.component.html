@@ -1,36 +1,43 @@
-<div class="navbar navbar-expand-lg navbar-light bg-light">
-    <a href="#" (click)="index()">Página Principal</a>
-    <a href="#" (click)="carrinho()">Carrinho</a>
-    <a href="#">Montar Computador</a>
+<div class="navbar navbar-expand-lg navbar-light bg-dark">
+    <a class="nav-link" href="#" (click)="index()">Página Principal</a>
+    <a class="nav-link" href="#" (click)="carrinho()">Carrinho</a>
+    <a class="nav-link" href="#" (click)="montarComputador()">Montar Computador</a>
 </div>
 
 <form #clienteForm="ngForm">
     <label>E-mail</label><br>
-    <input type="email" ngModel name="email" required email><br><br>
+    <input type="email" class="form-control campo" ngModel name="email" required email><br><br>
     <label>CPF</label><br>
-    <input type="text" ngModel name="cpf" #cpf="ngModel" required pattern="([0-9]{2}[\.]?[0-9]{3}[\.]?[0-9]{3}[\/]?[0-9]{4}[-]?[0-9]{2})|([0-9]{3}[\.]?[0-9]{3}[\.]?[0-9]{3}[-]?[0-9]{2})"><br><br>
+    <input type="text" class="form-control campo" ngModel name="cpf" #cpf="ngModel" required
+        pattern="([0-9]{2}[\.]?[0-9]{3}[\.]?[0-9]{3}[\/]?[0-9]{4}[-]?[0-9]{2})|([0-9]{3}[\.]?[0-9]{3}[\.]?[0-9]{3}[-]?[0-9]{2})"><br><br>
+        <div *ngIf="cpf.invalid" class="alert alert-danger">
+            Formatos aceitos são: 00000000000, 00000000000000, 000.000.000-00, 00.000.000/0000-00, 000000000-00 ou
+            00000000/0000-00
+        </div><br>
     <label>Nome Completo</label><br>
-    <div *ngIf="cpf.invalid" class="alert alert-danger">
-        Formatos aceitos são: 00000000000, 00000000000000, 000.000.000-00, 00.000.000/0000-00, 000000000-00 ou 00000000/0000-00
-    </div>
-    <input type="text" ngModel name="nome" required minlength="2"><br><br>
+    <input type="text" class="form-control campo" ngModel name="nome" required minlength="2"><br><br>
     <label>Endereço</label><br>
-    <input type="text" ngModel name="endereco" required minlength="1"><br><br>
+    <input type="text" class="form-control campo" ngModel name="endereco" required minlength="1"><br><br>
     <label>CEP</label><br>
-    <input type="text" ngModel #cep="ngModel" name="cep" required pattern="[0-9]{5}-[\d]{3}"><br><br>
+    <input type="text" class="form-control campo" ngModel #cep="ngModel" name="cep" required pattern="[0-9]{5}-[\d]{3}"><br><br>
     <div *ngIf="cep.invalid" class="alert alert-danger">
         Formato: 00000-000
-    </div>
+    </div><br>
     <label>Cartão de Crédito</label><br>
-    <input type="text" ngModel #cartao="ngModel" name="cartao" required pattern="^4[0-9]{12}(?:[0-9]{3})"><br><br>
+    <input type="text" class="form-control campo" ngModel #cartao="ngModel" name="cartao" required pattern="^4[0-9]{12}(?:[0-9]{3})"><br><br>
     <div *ngIf="cartao.invalid" class="alert alert-danger">
         Formato: 0000000000000000
-    </div>
-    <input type="button" value="Finalizar Compra" [disabled]="clienteForm.invalid">
+    </div><br>
+    <input type="button" class="btn btn-success botao" value="Finalizar Compra" [disabled]="clienteForm.invalid" (click)="concluirCompra()">
 </form>
 
 <h1>Detalhes da compra</h1>
-<div *ngFor="let produto of produtos">
-    <p>Nome: {{produto.nome}}</p>
+<div class="produto">
+    <div *ngFor="let produto of produtos" class="produtoInterno">
+        <img src="{{produto.img}}" alt="" class="produtoImg">
+        <p>{{produto.nome}}</p>
+        <p class="preco">R$ {{produto.valor}}</p>
+        <p>{{produto.quantidade}} unidade(s)</p>
+    </div>
 </div>
-<p>Preço: R$ {{precoTotal}}</p>
+<p class="preco">Preço total: R$ {{precoTotal}}</p>
