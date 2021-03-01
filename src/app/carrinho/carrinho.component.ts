@@ -59,7 +59,7 @@ export class CarrinhoComponent implements OnInit {
       }
     }
     sessionStorage.setItem("lista", JSON.stringify(this.carrinho));
-    this.indexService.setCarrinho(this.carrinho);
+    this.indexService.setProdutosEnviar(this.carrinho);
   }
 
   aumentar(produto: Produto) {
@@ -69,7 +69,7 @@ export class CarrinhoComponent implements OnInit {
           this.carrinho[i].quantidade = this.carrinho[i].quantidade + 1;
           sessionStorage.setItem("lista", JSON.stringify(this.carrinho));
           this.precoTotal = this.precoTotal + this.carrinho[i].valor;
-          this.indexService.setCarrinho(this.carrinho);
+          this.indexService.setProdutosEnviar(this.carrinho);
         } else {
           alert("Não existem mais unidades desse produto no estoque");
         }
@@ -84,7 +84,7 @@ export class CarrinhoComponent implements OnInit {
           this.carrinho[i].quantidade = this.carrinho[i].quantidade - 1;
           sessionStorage.setItem("lista", JSON.stringify(this.carrinho));
           this.precoTotal = this.precoTotal - this.carrinho[i].valor;
-          this.indexService.setCarrinho(this.carrinho);
+          this.indexService.setProdutosEnviar(this.carrinho);
         }
       }
     }
